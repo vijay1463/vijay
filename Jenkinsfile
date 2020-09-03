@@ -28,7 +28,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
               // Run Maven on a Unix agent.
-              sh "sudo docker build -t vijay1211/my-app:${env.BUILD_NUMBER} ."
+              sh "sudo docker build -t vijay1211/myapp ."
                
             }
         }
@@ -37,8 +37,8 @@ pipeline {
             steps { 
                withCredentials([string(credentialsId: 'Dockerpass', variable: 'Dockerhub')]) {
                sh "sudo docker login -u vijay1211 -p ${Dockerhub}"
-               sh "sudo docker push vijay1211/my-app:${env.BUILD_NUMBER}"
-               sh "sudo docker run -p 8082:8080 -d vijay1211/my-app:${env.BUILD_NUMBER}"
+               sh "sudo docker push vijay1211/myapp"
+               sh "sudo docker run -p 8082:8080 -d vijay1211/myapp"
           }
         }  
        }   
