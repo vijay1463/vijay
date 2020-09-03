@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                //Run Maven on a Unix agent.
-              sh " clean package"
+              sh " mvn clean package"
             }
         }
         stage('Docker installing') {
